@@ -1,20 +1,19 @@
 const express = require("express");
 const app = express();
+const controller = require("./controller/user");
 
-let id = 1;
-
-const db = [
-    {
-        id: 1,
-        name: "Arianna Rodriguez",
-        edad: 18
-    }
-];
-// Middleware que viene por defecto en express para que se transforme a objeto JS
 app.use(express.json());
 app.use(express.text());
 
-app.get("/getUsers", function(request, response) {
+app.get("/getUsers", controller.getUsers);
+app.get("/getUser/:id", controller.getUser);
+app.get("/addUser", controller.addUser);
+
+app.listen(8080, function () {
+	console.log("> Escuchando puerto 8080");
+});
+
+/*app.get("/getUsers", function(request, response) {
     response.send(db);
 });
 
@@ -33,7 +32,7 @@ app.get("/addUser", function(request, response, {}) {
 
     response.end();
 });
-
+*/
 app.listen(8080, function() {
     console.log("Escuchando en puerto 8080")
 })
