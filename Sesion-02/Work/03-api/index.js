@@ -22,11 +22,26 @@ const db = [
         id: 4,
         name: "Donas",
         price: 21
+    },
+    {
+        id: 5,
+        name: "Maruchan de habanero",
+        price: 20
     }
 ];
 
+// Obtiene todos los productos, la lista completa
 app.get("/getProducts", function(request, response) {
-    response.json(db);
+    if(request.query.name) {
+        const { name } = request.query
+
+        const filtered = db.filter((x) =>
+            x.name.toLowerCase().includes(name.toLocaleLowerCase())
+        );
+        response.json(filtered);
+    } else{ 
+        response.json(db);
+    }
 });
 
 // Un API tiene 4 maneras de recibir parametros
@@ -43,6 +58,8 @@ app.get('/getProduct/:id', function(request, response) {
 
     response.json(product);
 });
+
+// Buscar por nombre
 
 app.listen(8080, function() {
     console.log("> Escuchando puerto 8080");
