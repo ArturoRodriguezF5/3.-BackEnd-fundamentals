@@ -51,7 +51,7 @@ CREATE TABLE users (
 
 -- Para eliminar una tabla se utiliza la isntruccion DROPE TABLE seguido del nombre
 
-DROP TABLE users;
+--DROP TABLE users;
 
 CREATE TABLE songs (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -68,16 +68,23 @@ CREATE TABLE artist (
   songs 
 );
 
+-- Para registrar una llave foranea en SQL se usa:
+-- Foreign key (campo) REFRENCES tabla_original(campo_original)
+
 CREATE TABLE songs_artist (
   id_song INTEGER,
   id_artist INTEGER,
-  PRIMARY KEY(id_song, id_artist)
+  PRIMARY KEY(id_song, id_artist),
+  FOREIGN KEY (id_song) REFERENCES songs(id),
+  FOREIGN KEY (id_artist) REFERENCES artist(id)
 );
 
 CREATE TABLE user_songs (
-  id_user INTEGER,
-  id_song INTEGER,
-  PRIMARY KEY(id_user, id_song)
+  id_user INTEGER ,  -- Llave foranea de la tabla user
+  id_song INTEGER,  -- Llave foranea de la tabla song
+  PRIMARY KEY(id_user, id_song),
+  FOREIGN KEY (id_user) REFERENCES user(id),
+  FOREIGN KEY (id_song) REFERENCES songs(id)
 );
 
 -- Relacionar artistas con canciones
