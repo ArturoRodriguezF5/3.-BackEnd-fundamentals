@@ -54,8 +54,14 @@ app.get("/createUser", async function (request, response) {
 	}
 });
 
-app.get('/getUsers', function(request, repsonse) {
-  
+app.get('/getUsers', async function(request, response) {
+  const documents = await userModel.find();
+  response.json(documents);
+});
+
+app.get('/getUser/:id', async function(request, response) {
+  const document = await userModel.findById(request.params.id).exec();
+  response.json(document);
 });
 
 app.listen(8080, () => console.log("> escuchando puerto 8080"))
