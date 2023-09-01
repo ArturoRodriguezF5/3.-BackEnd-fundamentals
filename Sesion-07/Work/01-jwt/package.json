@@ -1,0 +1,22 @@
+{
+  "name": "01-jwt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "01-jsonwebtoken.js",
+  "scripts": {
+    "start:dev": "nodemon 01-jsonwebtoken.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^7.5.0",
+    "passport": "^0.6.0",
+    "passport-jwt": "^4.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
